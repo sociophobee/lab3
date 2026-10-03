@@ -1,6 +1,6 @@
 def print_all(data):
     """Виведення всіх записів словника"""
-    print("\n Список усіх осіб ")
+    print("\n--- Список усіх осіб ---")
     if not data:
         print("Словник порожній.")
         return
@@ -39,7 +39,7 @@ def delete_record(data):
 
 def print_sorted_by_keys(data):
     """Перегляд словника за відсортованими ключами"""
-    print("\n Відсортовані записи (за ID) ")
+    print("\n--- Відсортовані записи (за ID) ---")
     sorted_keys = sorted(data.keys())
     for key in sorted_keys:
         info = data[key]
@@ -59,6 +59,26 @@ def avg_height_men(data):
         print(f"\n=> Середній зріст чоловіків: {avg:.2f} см\n")
     else:
         print("\n=> У списку немає чоловіків.\n")
+
+
+# ==========================================
+# НОВА ФУНКЦІЯ ВІД СТУДЕНТА 1(Ткаченко)
+# ==========================================
+def find_tallest_person(data):
+    """Функція Студента 1: Поиск людини з найбільшим зростом"""
+    if not data:
+        print("\n=> Словник порожній.\n")
+        return
+    
+    max_height = 0
+    tallest_person = None
+    
+    for info in data.values():
+        if info['зріст'] > max_height:
+            max_height = info['зріст']
+            tallest_person = info
+            
+    print(f"\n=> Найвища людина: {tallest_person['прізвище']} {tallest_person['ім\'я']}, Зріст: {max_height} см\n")
 
 
 # ==========================================
@@ -84,16 +104,17 @@ def main():
     }
 
     while True:
-        print(" ГОЛОВНЕ МЕНЮ ")
+        print("====== ГОЛОВНЕ МЕНЮ ======")
         print("1. Показати всі записи")
         print("2. Додати запис")
         print("3. Видалити запис")
         print("4. Показати відсортовано за ID")
         print("5. Знайти середній зріст чоловіків (Моє завдання)")
-        print("6. Вийти")
+        print("6. Знайти найвищу людину (Студент 1)")
+        print("7. Вийти")
         print("==========================")
         
-        choice = input("Оберіть дію (1-6): ")
+        choice = input("Оберіть дію (1-7): ")
         
         if choice == '1':
             print_all(people)
@@ -106,6 +127,8 @@ def main():
         elif choice == '5':
             avg_height_men(people)
         elif choice == '6':
+            find_tallest_person(people)
+        elif choice == '7':
             print("Роботу завершено.")
             break
         else:
